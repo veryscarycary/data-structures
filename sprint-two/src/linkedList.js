@@ -12,19 +12,6 @@ var LinkedList = function() {
       list.tail.next = node;
       list.tail = list.tail.next;
     }
-
-    // } else if ( list.head.next === list.head && list.tail !== list.head ) {
-
-    // if ( list.tail !== null ) { // if list.tail exists...
-    //   list.tail.next = node;  // point it at the next tail to be added
-    // }
-
-    // list.tail = node;
-    console.log('THIS IS THE ADDTOTAIL FUNCTION');
-    console.log('node: ' + node);
-    console.log('node.value: ' + node.value);
-    console.log('node.next: ' + node.next);
-    console.log('')
   };
 
   list.removeHead = function() {
@@ -36,24 +23,17 @@ var LinkedList = function() {
   list.contains = function(target) {
     var currentNode = list.head;
     while ( currentNode.next !== null ) {
-    debugger;
-      console.log('THIS IS THE CONTAINS FUNCTION');
-      console.log('target: ' + target);
-      console.log('node: ' + currentNode);
-      console.log('node.value: ' + currentNode.value);
-      console.log('node.next: ' + currentNode.next);
-      console.log('node.next.value: ' + currentNode.next.value);
       if ( currentNode.value === target ) {
-        console.log('RETURNING TRUE!!!')
-        console.log('')
         return true;
       } else {
         currentNode = currentNode.next;
       }
     }
-    console.log('RETURNING FALSE!!!')
-    console.log('')
-    return false;
+    if (currentNode.value === target) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return list;
