@@ -21,17 +21,24 @@ treeMethods.contains = function(target) {
   var binarySearch = function(array, target, startIndex, endIndex) {
     var startIndex = startIndex || 0;
     var endIndex = endIndex || array.length - 1;
-    var midpoint = Math.floor((endIndex+ startIndex)/2);
-    if (array[midpoint] === target) {
-      return midpoint;
+    var midpoint = Math.floor((endIndex + startIndex) / 2);
+    debugger;
+    if (array[midpoint].value === target) {
+      return true;
     }
-    if (array[midpoint] > target) {
+
+    if (array[midpoint].value > target) {
       // recurse left
-    } else {
+      return binarySearch(array, target, startIndex, midpoint - 1);
+    } else if (array[midpoint].value < target) {
       // recurse right
+      return binarySearch(array, target, midpoint + 1, endIndex);
     }
+
+    return false;
   };
 
+  return binarySearch(this.children, target);
 };
 
 
