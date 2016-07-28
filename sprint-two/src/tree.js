@@ -18,27 +18,21 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  var binarySearch = function(array, target, startIndex, endIndex) {
-    var startIndex = startIndex || 0;
-    var endIndex = endIndex || array.length - 1;
-    var midpoint = Math.floor((endIndex + startIndex) / 2);
-    debugger;
-    if (array[midpoint].value === target) {
-      return true;
+  
+  var search = function(arr, target) {
+    for ( var i = 0; i < arr.length; i++ ) {
+      if ( arr[i].value === target ) {
+        return true;
+      } else if (arr[i].children.length > 0) {
+        if ( search(arr[i].children, target) === true ) {
+          return true;
+        }
+      }
     }
-
-    if (array[midpoint].value > target) {
-      // recurse left
-      return binarySearch(array, target, startIndex, midpoint - 1);
-    } else if (array[midpoint].value < target) {
-      // recurse right
-      return binarySearch(array, target, midpoint + 1, endIndex);
-    }
-
     return false;
   };
 
-  return binarySearch(this.children, target);
+  return search(this.children, target);
 };
 
 
