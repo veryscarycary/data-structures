@@ -22,3 +22,12 @@ Stack.prototype.pop = function() {
 Stack.prototype.size = function() {
   return this._size;
 };
+
+var LOOKATTHIS = function() {
+  var myStack = new Stack();
+  for (var i = 0; i < 999999; i++) {
+    myStack[i] = new Stack();
+  }
+};
+
+LOOKATTHIS();

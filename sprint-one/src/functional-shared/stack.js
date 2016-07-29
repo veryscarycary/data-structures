@@ -37,3 +37,12 @@ var extend = function(to, from) {
     to[key] = from[key];
   }
 };
+
+var LOOKATTHIS = function() {
+  var myStack = Stack();
+  for (var i = 0; i < 999999; i++) {
+    myStack[i] = Stack();
+  }
+};
+
+LOOKATTHIS();

@@ -26,3 +26,12 @@ var stackMethods = {
     return this._size;
   }
 };
+
+var LOOKATTHIS = function() {
+  var myStack = Stack();
+  for (var i = 0; i < 999999; i++) {
+    myStack[i] = Stack();
+  }
+};
+
+LOOKATTHIS();
