@@ -41,4 +41,20 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('Advanced tree tests begin below');
+
+  it('have .parent, which refers to the parent node or null when there is no node', function () {
+    expect(tree.parent).to.equal(null);
+    tree.addChild(6);
+    expect(tree.children[0].parent.value).to.equal(tree.value);
+  });
+
+  it('should have .removeFromParent, which disassociates the tree with its parent entirely', function() {
+    tree.addChild(7);
+    tree.addChild(8);
+    tree.children[0].removeFromParent();
+    expect(tree.children[0].value).to.equal(8);
+  });
+
+
 });
