@@ -9,6 +9,7 @@ var BinarySearchTree = function(value) {
 
 var binaryTreeMethods = {};
 
+// Time complexity: O(log n)
 binaryTreeMethods.insert = function (value, branch) {
   // debugger;
   var branch = branch || this;
@@ -28,6 +29,7 @@ binaryTreeMethods.insert = function (value, branch) {
   }
 };
 
+// Time complexity: O(log n)
 binaryTreeMethods.contains = function (value, branch) {
   var branch = branch || this;
 
@@ -48,6 +50,7 @@ binaryTreeMethods.contains = function (value, branch) {
   }
 };
 
+// Time complexity: O(n)
 binaryTreeMethods.depthFirstLog = function (cb, branch) {
   branch = branch || this;
   cb(branch.value);
