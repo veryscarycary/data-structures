@@ -7,18 +7,41 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if ( this._storage[index] === undefined ) {
-    this._storage[index] = [];
+  var bucket;
+  var storage = this._storage;
+
+  // If the bucket for the given index does not exist,
+  // initialize it
+  if ( storage.get(index) === undefined ) {
+    bucket = LimitedArray();
+    storage.set(index, bucket);
   }
-  for (var i = 0; i < this._storage[index].length; i++ ) {
-    var tuple = this._storage[index][i];
+
+  // This finds the tuple if it exists already
+  // and replaces the existing value for the key
+  // with a new value
+  storage.each(function(bucket, i, storage) {
+    var tuple = bucket.get(i);
     var key = tuple[0];
     if ( key === k ) {
       tuple[1] = v;
       return;
     }
-  }
-  this._storage[index].push([k, v]);
+  });
+
+  // Create a tuple
+  var tuple = LimitedArray();
+  tuple.set(0, k);
+  tuple.set(1, v);
+
+  // Create a bucket
+  bucket = bucket || storage.get(index);
+  var bucketLength = 0;
+  bucket.each(function(tuple, i, bucket) {
+    bucketLength++;
+  });
+  // Insert tuple in bucket
+  bucket.set(bucketLength, tuple);
 };
 
 HashTable.prototype.retrieve = function(k) {
