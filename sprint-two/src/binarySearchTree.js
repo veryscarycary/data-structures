@@ -1,4 +1,55 @@
 var BinarySearchTree = function(value) {
+  var instance = Object.create(binaryTreeMethods);
+  instance.value = value;
+  instance.left = null;
+  instance.right = null;
+
+  return instance;
+};
+
+var binaryTreeMethods = {};
+
+binaryTreeMethods.insert = function (value, branch) {
+  // debugger;
+  var branch = branch || this;
+
+  if (value > branch.value) {
+    if (!branch.right) {
+      branch.right = {value: value};
+    } else if (branch.right) {
+      this.insert(value, branch.right);
+    }
+  } else if (value < branch.value) {
+    if (!branch.left) {
+      branch.left = {value: value};
+    } else if (branch.left) {
+      this.insert(value, branch.left);
+    }
+  }
+};
+
+binaryTreeMethods.contains = function (value, branch) {
+  var branch = branch || this;
+
+  if (value === branch.value) {
+    return true;
+  } else if (value > branch.value) {
+    if (branch.right) {
+      return this.contains(value, branch.right);
+    } else {
+      return false;
+    }
+  } else if (value < branch.value) {
+    if (branch.left) {
+      return this.contains(value, branch.left);
+    } else {
+      return false;
+    }
+  }
+};
+
+binaryTreeMethods.depthFirstLog = function (cb) {
+
 };
 
 
