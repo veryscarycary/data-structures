@@ -80,5 +80,4 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList.tail.value).to.equal(9);
   });
 
-
 });
