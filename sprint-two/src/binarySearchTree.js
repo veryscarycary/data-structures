@@ -48,8 +48,16 @@ binaryTreeMethods.contains = function (value, branch) {
   }
 };
 
-binaryTreeMethods.depthFirstLog = function (cb) {
+binaryTreeMethods.depthFirstLog = function (cb, branch) {
+  branch = branch || this;
+  cb(branch.value);
 
+  if (branch.left) {
+    this.depthFirstLog(cb, branch.left);
+  }
+  if (branch.right) {
+    this.depthFirstLog(cb, branch.right);
+  }
 };
 
 
