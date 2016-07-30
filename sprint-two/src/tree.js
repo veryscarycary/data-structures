@@ -51,6 +51,16 @@ treeMethods.contains = function(target) {
   return search(this.children, target);
 };
 
+treeMethods.traverse = function(cb) {
+  cb(this);
+
+  if (this.children.length) {
+    this.children.forEach(function (child) {
+      child.traverse(cb);
+    });
+  }
+};
+
 
 
 /*
